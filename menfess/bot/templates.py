@@ -21,3 +21,9 @@ pesan {_TRV} akan terkirim jika pesan {_TRV} memenuhi syarat di bawah ini:
 
 Udah itu aja {_TRV}! enjoy flexing gacha dan damage karakter {_TRV} ya, ehe!
 """.format(_TRV=__TRAVELER, _TVT=__TEYVAT)
+
+
+ON_SUCCESS_POST = """
+Hore, pesan {_TRV} telah terkirim ke {_TVT}!
+{_TRV} bisa melihatnya dengan menekan tombol di bawah ya~.
+""".format(_TRV=__TRAVELER, _TVT=__TEYVAT)
