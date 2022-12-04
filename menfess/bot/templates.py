@@ -1,5 +1,8 @@
+import os
+
+
 __TRAVELER = "[Traveler](tg://user?id={user_id})"
-__TEYVAT = "[Teyvat]({channel_link})"
+__TEYVAT = f"[Teyvat](t.me/{os.getenv('CHANNEL_USERNAME')})"
 
 
 ON_START_MSG = """
