@@ -1,8 +1,38 @@
 from typing import Optional
 from datetime import datetime
-
 from menfess.database.models import BaseModel
-from menfess.database.models.users import BannedUser, PremiumUser
+
+
+class BannedUser(BaseModel):
+	is_banned: bool
+	since: Optional[datetime] = None
+	until: Optional[datetime] = None
+
+	def __init__(
+		self,
+		is_banned: bool,
+		since: Optional[datetime] = None,
+		until: Optional[datetime] = None
+	) -> None:
+		kwargs = locals()
+		kwargs.pop("self")
+		super().__init__(**kwargs)
+
+
+class PremiumUser(BaseModel):
+	is_active: bool
+	subscription_created: Optional[datetime] = None
+	subscription_ended: Optional[datetime] = None
+
+	def __init__(
+		self,
+		is_active: bool,
+		subscription_created: Optional[datetime] = None,
+		subscription_ended: Optional[datetime] = None
+	) -> None:
+		kwargs = locals()
+		kwargs.pop("self")
+		super().__init__(**kwargs)
 
 
 class UserModel(BaseModel):
