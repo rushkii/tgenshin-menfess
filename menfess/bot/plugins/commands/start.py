@@ -9,9 +9,13 @@ from menfess.bot.client import GenshinMF
 async def on_start_command(c: GenshinMF, m: Message):
 	user_id = m.from_user.id
 	msg = ON_START_MSG.format(user_id=user_id, bot_name=c.me.first_name)
-	await m.reply(msg, reply_markup=InlineKeyboardMarkup(
-		[[InlineKeyboardButton(
-			"Gimana caranya? 🤔",
-			callback_data=f"howto {user_id}"
-		)]]
-	))
+	await m.reply(
+		text=msg,
+		reply_markup=InlineKeyboardMarkup(
+			[[InlineKeyboardButton(
+				"Gimana caranya? 🤔",
+				callback_data=f"howto {user_id}"
+			)]]
+		),
+		disable_web_page_preview=True
+	)
