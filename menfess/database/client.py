@@ -1,8 +1,10 @@
 import os
 from pymongo import MongoClient
 
+from .methods import Methods
 
-class MongoDB:
+
+class MongoDB(Methods):
 	def __init__(self, conn: "MongoClient") -> None:
 		self.conn = conn
 		self._db = conn[os.getenv("DB_NAME")]
