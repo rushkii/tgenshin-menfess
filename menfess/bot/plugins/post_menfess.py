@@ -1,15 +1,16 @@
 import os
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from menfess.bot.templates import ON_SUCCESS_POST
+from menfess.bot.client import GenshinMF
 
 
-@Client.on_message(
+@GenshinMF.on_message(
 	(filters.text | filters.photo | filters.video | filters.document) &
 	filters.private
 )
-async def on_post_menfess(c: Client, m: Message):
+async def on_post_menfess(c: GenshinMF, m: Message):
 	if len(m.text.split()) >= 5 and len(m.text) >= 20:
 		ch_usn = os.getenv("CHANNEL_USERNAME")
 		mem_ids = [mem.user.id async for mem in c.get_chat_members(ch_usn)]
