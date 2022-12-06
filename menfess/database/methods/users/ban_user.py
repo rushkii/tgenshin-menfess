@@ -3,8 +3,9 @@ from datetime import datetime
 from datetime import timedelta
 
 import menfess
-from menfess.database.models import UserModel
-from menfess.database.models.users import BannedUser
+from menfess.database.models import (
+	BannedUser, UserModel
+)
 
 
 class BanUser:
