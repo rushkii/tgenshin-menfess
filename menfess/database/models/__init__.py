@@ -1,3 +1,2 @@
 from .base_model import BaseModel
-
-from .users import UserModel
+from .users import BannedUser, PremiumUser, UserModel
