@@ -2,10 +2,8 @@ from pyrogram.types import User
 from datetime import datetime
 
 import menfess
-from menfess.database.models import UserModel
-from menfess.database.models.users import (
-	BannedUser,
-	PremiumUser
+from menfess.database.models import (
+	BannedUser, PremiumUser, UserModel
 )
 
 
