@@ -1,12 +1,12 @@
 from pyrogram import Client
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
-from . import filter
+from menfess.bot import custom_filters
 from menfess.bot.templates import ON_START_MSG
 from menfess.bot.client import GenshinMF
 
 
-@GenshinMF.on_callback_query(filter.callback("start"))
+@GenshinMF.on_callback_query(custom_filters.callback("start"))
 async def on_start_callback(c: GenshinMF, cq: CallbackQuery):
 	user_id = cq.from_user.id
 	msg = ON_START_MSG.format(user_id=user_id, bot_name=c.me.first_name)
