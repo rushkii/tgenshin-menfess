@@ -4,26 +4,29 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from menfess.bot.templates import ON_SUCCESS_POST
 from menfess.bot.client import GenshinMF
+from menfess.bot import custom_filters, enums
 
 
 @GenshinMF.on_message(
 	(filters.text | filters.photo | filters.video | filters.document) &
-	filters.private
+	filters.private & (
+		custom_filters.restricted_for(enums.Account.BANNED) &
+		custom_filters.valid_only
+	)
 )
-async def on_post_menfess(c: GenshinMF, m: Message):
-	if len(m.text.split()) >= 5 and len(m.text) >= 20:
-		ch_usn = os.getenv("CHANNEL_USERNAME")
-		mem_ids = [mem.user.id async for mem in c.get_chat_members(ch_usn)]
-		if m.from_user.id in mem_ids:
-			copied = await m.copy(ch_usn)
-			msg = ON_SUCCESS_POST.format(user_id=m.from_user.id)
-			await m.reply(
-				text=msg,
-				reply_markup=InlineKeyboardMarkup(
-					[[InlineKeyboardButton(
-						"Lihat pesan 💬",
-						url=f"t.me/{ch_usn}/{copied.id}"
-					)]]
-				),
-				disable_web_page_preview=True
-			)
+async def on_post_menfess(_, m: Message):
+	user = m.from_user
+	ch_usn = os.getenv("CHANNEL_USERNAME")
+
+	copied = await m.copy(ch_usn)
+	await m.reply(
+		text=ON_SUCCESS_POST.format(user_id=user.id),
+		reply_markup=InlineKeyboardMarkup(
+			[[InlineKeyboardButton(
+				"Lihat pesan 💬",
+				url=f"t.me/{ch_usn}/{copied.id}"
+			)]]
+		),
+		disable_web_page_preview=True,
+		disable_notification=True
+	)
