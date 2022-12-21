@@ -24,7 +24,6 @@
 #  AND REMAIN KEEP OF MY LICENSE NOTICE.
 
 
-from pyrogram import Client
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
 from menfess.bot import custom_filters
