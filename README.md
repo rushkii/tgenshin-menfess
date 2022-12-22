@@ -1,6 +1,5 @@
 <h1 align="center">Telegram Genshin Menfess</h1>
 <img src="assets/cover.png" align="center"/>
-<br/><br/>
 
 **Telegram Genshin Menfess** is a Telegram bot for posting user's [menfess](https://qr.ae/pvb9pX) into a channel that related to **Genshin Impact**
 
