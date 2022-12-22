@@ -39,6 +39,7 @@ Setup a **.env file**, you can see the example of env variables in the .**env-ex
 
 <details>
     <summary><b>Telegram API Credentials (API ID & API HASH)</b></summary>
+    <img src="assets/api_auth.png"/>
     You can get them by creating API apps <a href="https://my.telegram.org/apps">here</a>.
     <pre>API_ID=123123
 API_HASH=abcdEFgHiJkl</pre>
