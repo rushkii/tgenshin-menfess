@@ -42,24 +42,26 @@ class BanUser:
 		photo: bytes
 	):
 		usr = await self.find(user.id)
-		if usr:
-			if not usr.banned.is_banned:
-				now = datetime.now()
-				banned = BannedUser(
-					is_banned=True,
-					since=now,
-					until=(now + duration)
-				)
-				model = UserModel(
-					id=user.id,
-					username=user.username,
-					first_name=user.first_name,
-					last_name=user.last_name,
-					phone_number=user.phone_number,
-					photo=photo,
-					banned=banned,
-					updated_at=now
-				)
-				succeed = await self.update(model.dict())
-				if succeed:
-					return banned
+		if not usr:
+			return
+
+		if not usr.banned.is_banned:
+			now = datetime.now()
+			banned = BannedUser(
+				is_banned=True,
+				since=now,
+				until=(now + duration)
+			)
+			model = UserModel(
+				id=user.id,
+				username=user.username,
+				first_name=user.first_name,
+				last_name=user.last_name,
+				phone_number=user.phone_number,
+				photo=photo,
+				banned=banned,
+				updated_at=now
+			)
+			succeed = await self.update(model.dict())
+			if succeed:
+				return banned
